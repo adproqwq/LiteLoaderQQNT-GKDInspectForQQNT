@@ -1,0 +1,32 @@
+{
+  "manifest_version": 4,
+  "type": "framework",
+  "name": "GKD网页审查工具 for QQNT",
+  "slug": "LiteLoaderQQNT_GKDInspectForQQNT",
+  "description": "用于在QQNT中快捷开始审查快照",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Adpro",
+      "link": "https://github.com/adproqwq"
+    }
+  ],
+  "platform": [
+    "win32",
+    "linux",
+    "darwin"
+  ],
+  "injects": {
+    "main": "./main/index.js",
+    "preload": "./preload/index.js",
+    "renderer": "./renderer/index.js"
+  },
+  "repository": {
+    "repo": "adproqwq/LiteLoaderQQNT-GKDInspectForQQNT",
+    "branch": "main",
+    "release": {
+      "tag": "v1.0.0",
+      "file": "LiteLoaderQQNT-GKDInspectForQQNT"
+    }
+  }
+}
