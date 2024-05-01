@@ -1,7 +1,7 @@
 # LiteLoaderQQNT-GKDInspectForQQNT
 
 ## 说明
-本插件依赖[Euphony](https://github.com/xtaw/LiteLoaderQQNT-Euphony)，请在安装本插件前确保已安装`Euphony`。
+使用本插件请确保网络连接
 
 ## 安装方法
 1. 下载最新 [发行版](https://github.com/adproqwq/LiteLoaderQQNT-AutoSendMessages/releases) 并解压
@@ -11,7 +11,6 @@
 ## 鸣谢
 * [LiteLoaderQQNT](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT/)
 * [LiteLoaderQQNT-PluginTemplate-Vite](https://github.com/MisaLiu/LiteLoaderQQNT-PluginTemplate-Vite)
-* [LiteLoaderQQNT-Euphony](https://github.com/xtaw/LiteLoaderQQNT-Euphony)
 * [GKD网页审查工具](https://github.com/gkd-kit/inspect)
 
 ## License
