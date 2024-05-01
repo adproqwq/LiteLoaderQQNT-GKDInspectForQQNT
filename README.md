@@ -1,10 +1,10 @@
 # LiteLoaderQQNT-GKDInspectForQQNT
 
 ## 说明
-使用本插件请确保网络连接
+仅对快照链接生效
 
 ## 安装方法
-1. 下载最新 [发行版](https://github.com/adproqwq/LiteLoaderQQNT-AutoSendMessages/releases) 并解压
+1. 下载最新 [发行版](https://github.com/adproqwq/LiteLoaderQQNT-GKDInspectForQQNT/releases) 并解压
 2. 将文件夹移动至 `LiteLoaderQQNT数据目录/plugins/` 下面
 3. 重启QQNT即可
 
