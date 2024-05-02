@@ -1,6 +1,6 @@
 {
   "manifest_version": 4,
-  "type": "framework",
+  "type": "extension",
   "name": "GKD网页审查工具 for QQNT",
   "slug": "LiteLoaderQQNT_GKDInspectForQQNT",
   "description": "用于在QQNT中快捷开始审查快照",
