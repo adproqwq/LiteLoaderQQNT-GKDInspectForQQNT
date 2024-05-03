@@ -1,4 +1,4 @@
-import { inspectOpenEvent } from './inspectEvent';
+import { inspectOpenEvent } from './customEvent';
 
 export default () => {
   // 循环检测，每秒一次
@@ -19,10 +19,23 @@ export default () => {
         }
       }
     });
-    // 监听 审查 按钮按下
+    // 获取文件的消息元素
+    document.querySelectorAll('.file-message--content').forEach((e) => {
+      // 判断是否已添加过 上传 按钮
+      if((e as HTMLDivElement).nextElementSibling?.id !== 'inspectEntry'){
+        // 配置按钮属性
+        const entryButton = document.createElement('button');
+        entryButton.id = 'inspectEntry';
+        entryButton.innerText = '上传';
+        entryButton.setAttribute('data-link', 'https://i.gkd.li');
+        // 将按钮插入至链接之后
+        (e as HTMLSpanElement).insertAdjacentElement('afterend', entryButton);
+      }
+    });
+    // 监听 审查/上传 按钮按下
     document.querySelectorAll('#inspectEntry').forEach((b) => {
       (b as HTMLButtonElement).onclick = () => {
-        // 将快照链接存入自定义事件携带的参数中
+        // 将携带的链接存入自定义事件携带的参数中
         inspectOpenEvent.detail.link = (b as HTMLButtonElement).getAttribute('data-link')!;
         // 触发自定义事件
         window.dispatchEvent(inspectOpenEvent);

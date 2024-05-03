@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 declare namespace LL_GKDInspectForQQNT {
-  const openWindow: (snapshotUrl: string) => void,
+  const openInspectWindow: (snapshotUrl: string) => void,
 };
 
 declare interface ILiteLoaderManifestConfig {
