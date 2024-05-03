@@ -1,12 +1,22 @@
 import addInspectEntry from '../utils/addInspectEntry';
+import settingsPage from '../pages/settings';
 
 // 当渲染进程窗口加载完成后触发
 const onload = () => {
   addInspectEntry();
-  // 监听 inspectOpen 自定义事件
-  window.addEventListener('inspectOpen', (e) => {
-    // 当监听到 inspectOpen 事件，调用 LL_GKDInspectForQQNT.openInspectWindow 传递快照链接
-    LL_GKDInspectForQQNT.openInspectWindow((e as CustomEvent).detail.link);
-  });
 };
 onload();
+
+export const onSettingWindowCreated = async (view: HTMLElement) => {
+  view.innerHTML = settingsPage;
+
+  (view.querySelector('#pluginVersion') as HTMLParagraphElement).innerHTML = globalThis.LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.manifest.version;
+
+  (view.querySelector('#github') as HTMLButtonElement).addEventListener('click', () => {
+    globalThis.LiteLoader.api.openExternal('https://github.com/adproqwq/LiteLoaderQQNT-GKDInspectForQQNT');
+  });
+
+  (view.querySelector('#detail') as HTMLButtonElement).addEventListener('click', () => {
+    LL_GKDInspectForQQNT.openDetailWindow();
+  });
+};

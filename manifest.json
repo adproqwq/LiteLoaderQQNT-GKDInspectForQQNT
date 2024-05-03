@@ -5,7 +5,7 @@
   "name": "GKD网页审查工具 for QQNT",
   "slug": "LiteLoaderQQNT_GKDInspectForQQNT",
   "description": "用于在QQNT中快捷开始审查快照",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "authors": [
     {
       "name": "Adpro",
@@ -26,7 +26,7 @@
     "repo": "adproqwq/LiteLoaderQQNT-GKDInspectForQQNT",
     "branch": "main",
     "release": {
-      "tag": "v1.1.0",
+      "tag": "v1.2.0",
       "file": "LiteLoaderQQNT-GKDInspectForQQNT"
     }
   }

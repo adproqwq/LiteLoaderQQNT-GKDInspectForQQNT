@@ -2,6 +2,7 @@
 
 declare namespace LL_GKDInspectForQQNT {
   const openInspectWindow: (snapshotUrl: string) => void,
+  const openDetailWindow: () => void,
 };
 
 declare interface ILiteLoaderManifestConfig {
