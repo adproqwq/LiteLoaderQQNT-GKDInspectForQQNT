@@ -119,7 +119,6 @@ declare namespace LiteLoader {
     openPath: (path: string) => void,
     openExternal: (url: string) => void,
     disablePlugin: (slug: string) => void,
-    registerUrlHandler: (name: string, callback: (rest: string[], url: string) => void) => void,
     config: ILiteLoaderAPIConfig,
   }
 

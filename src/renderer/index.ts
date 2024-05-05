@@ -1,5 +1,7 @@
 import addInspectEntry from '../utils/addInspectEntry';
 import settingsPage from '../pages/settings';
+import { slug } from '../config/commonInfo';
+import { snapshotCollections } from '../config/snapshotCollection';
 
 // 当渲染进程窗口加载完成后触发
 const onload = () => {
@@ -18,5 +20,9 @@ export const onSettingWindowCreated = async (view: HTMLElement) => {
 
   (view.querySelector('#detail') as HTMLButtonElement).addEventListener('click', () => {
     LL_GKDInspectForQQNT.openDetailWindow();
+  });
+
+  (view.querySelector('#cleanAllLinks') as HTMLButtonElement).addEventListener('click', async () => {
+    await LiteLoader.api.config.set(slug, snapshotCollections);
   });
 };

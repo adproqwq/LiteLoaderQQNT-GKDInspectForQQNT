@@ -1,6 +1,6 @@
 {
   "name": "liteloaderqqnt-gkd-inspect-for-qqnt",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "用于在QQNT中快捷开始审查快照",
   "main": "index.js",
   "scripts": {

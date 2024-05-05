@@ -13,6 +13,20 @@ export default `
   </setting-panel>
 </setting-section>
 
+<setting-section data-title="数据">
+  <setting-panel>
+    <setting-list data-direction="column">
+      <setting-item>
+        <div>
+          <setting-text>清除所有收集的快照链接</setting-text>
+          <setting-text data-type="secondary">会清除所有，请谨慎哦！</setting-text>
+          <setting-button id="cleanAllLinks" data-type="secondary">清除所有</setting-button>
+        </div>
+      </setting-item>
+    </setting-list>
+  </setting-panel>
+</setting-section>
+
 <setting-section data-title="关于">
   <setting-panel>
     <setting-list data-direction="column">
