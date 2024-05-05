@@ -61,7 +61,7 @@ ipcMain.on('LL_GKDInspectForQQNT.openDetailWindow', (e) => {
   detailWindow.loadFile(`${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data}/index.html`);
   detailWindow.show(); // 显示窗口
 
-  // 当 inspectWindow 创建新窗口时触发
+  // 当 detailWindow 创建新窗口时触发
   detailWindow.webContents.setWindowOpenHandler((details) => {
     if(details.url){
       // 如果创建的是 网页审查工具
