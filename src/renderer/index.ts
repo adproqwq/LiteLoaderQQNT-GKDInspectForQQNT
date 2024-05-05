@@ -10,6 +10,7 @@ const onload = () => {
 onload();
 
 export const onSettingWindowCreated = async (view: HTMLElement) => {
+  // 设置页的事件监听
   view.innerHTML = settingsPage;
 
   (view.querySelector('#pluginVersion') as HTMLParagraphElement).innerHTML = globalThis.LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.manifest.version;
