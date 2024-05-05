@@ -1,7 +1,11 @@
 # LiteLoaderQQNT-GKDInspectForQQNT
 
 ## 说明
-仅对快照链接生效
+使用文件导入的方法无法获得快照分享链接，
+
+快照链接导入不受影响。
+
+支持收集QQ聊天中的快照链接，可以在插件设置页查看。
 
 ## 安装方法
 1. 下载最新 [发行版](https://github.com/adproqwq/LiteLoaderQQNT-GKDInspectForQQNT/releases) 并解压
