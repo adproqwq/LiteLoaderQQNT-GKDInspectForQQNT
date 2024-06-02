@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-undef */
 const detailTable = `
 <table id="detailTable" class="list">
   <thead>
