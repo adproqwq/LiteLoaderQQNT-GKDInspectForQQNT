@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('LL_GKDInspectForQQNT', {
     ipcRenderer.send('LL_GKDInspectForQQNT.openInspectWindow', url);
   },
   openDetailWindow: () => {
+    // 同上
     ipcRenderer.send('LL_GKDInspectForQQNT.openDetailWindow');
   },
 });

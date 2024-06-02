@@ -1,9 +1,7 @@
-import { BrowserWindow, ipcMain } from 'electron';
+import { BrowserWindow, ipcMain, app } from 'electron';
 import betterCopy from '../scripts/betterCopy';
 import { ISnapshotCollection } from '../config/snapshotCollection';
 import fs from 'node:fs';
-import detail from '../pages/detail';
-import detailScript from '../scripts/detailScript';
 
 // 判断是否存在数据文件夹
 if(!fs.existsSync(LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data)){
@@ -12,16 +10,12 @@ if(!fs.existsSync(LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data)
     if(err) throw err;
   });
 }
-// 写出网页文件
-fs.writeFile(`${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data}/index.html`, detail, (err) => {
-  if(err) throw err;
-});
-fs.writeFile(`${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data}/index.js`, detailScript, (err) => {
-  if(err) throw err;
-});
+// 复制网页文件到data
+fs.copyFileSync(`${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.plugin}/pages/detail.html`, `${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data}/index.html`);
+fs.copyFileSync(`${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.plugin}/scripts/detailScript.js`, `${LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.data}/index.js`);
 
 // 监听 LL_GKDInspectForQQNT.openInspectWindow 频道，获取携带的快照链接
-ipcMain.on('LL_GKDInspectForQQNT.openInspectWindow', (e, url: string) => {
+ipcMain.on('LL_GKDInspectForQQNT.openInspectWindow', (_, url: string) => {
   // 创建一个新窗口
   const inspectWindow = new BrowserWindow({
     height: 1080, // 窗口高度
@@ -51,7 +45,7 @@ ipcMain.on('LL_GKDInspectForQQNT.openInspectWindow', (e, url: string) => {
   });
 });
 
-ipcMain.on('LL_GKDInspectForQQNT.openDetailWindow', (e) => {
+ipcMain.on('LL_GKDInspectForQQNT.openDetailWindow', () => {
   // 创建一个新窗口
   const detailWindow = new BrowserWindow({
     height: 1080, // 窗口高度
@@ -113,6 +107,16 @@ ipcMain.on('LL_GKDInspectForQQNT.openDetailWindow', (e) => {
       action: 'deny',
     }
   });
+});
+
+app.whenReady().then(async () => {
+  const isHaveUpdate = await LiteLoader.api.checkUpdate('LiteLoaderQQNT_GKDInspectForQQNT');
+  if(isHaveUpdate){
+    const updateResult = await LiteLoader.api.downloadUpdate('LiteLoaderQQNT_GKDInspectForQQNT');
+    if(updateResult){
+      LiteLoader.api.showRelaunchDialog('LiteLoaderQQNT_GKDInspectForQQNT', true);
+    }
+  }
 });
 
 export const onBrowserWindowCreated = (window: BrowserWindow) => {

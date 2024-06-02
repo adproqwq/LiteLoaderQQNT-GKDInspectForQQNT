@@ -1,5 +1,4 @@
 import addInspectEntry from '../utils/addInspectEntry';
-import settingsPage from '../pages/settings';
 import { slug } from '../config/commonInfo';
 import { snapshotCollections } from '../config/snapshotCollection';
 
@@ -10,10 +9,13 @@ const onload = () => {
 onload();
 
 export const onSettingWindowCreated = async (view: HTMLElement) => {
+  const pluginPath = LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.path.plugin;
+  const settingsPage = await (await fetch(`local:///${pluginPath}/pages/settings.html`)).text();
+
   // 设置页的事件监听
   view.innerHTML = settingsPage;
 
-  (view.querySelector('#pluginVersion') as HTMLParagraphElement).innerHTML = globalThis.LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.manifest.version;
+  (view.querySelector('#pluginVersion') as HTMLParagraphElement).innerHTML = LiteLoader.plugins.LiteLoaderQQNT_GKDInspectForQQNT.manifest.version;
 
   (view.querySelector('#github') as HTMLButtonElement).addEventListener('click', () => {
     globalThis.LiteLoader.api.openExternal('https://github.com/adproqwq/LiteLoaderQQNT-GKDInspectForQQNT');

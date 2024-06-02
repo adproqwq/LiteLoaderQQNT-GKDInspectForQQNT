@@ -7,6 +7,11 @@
 
 支持收集QQ聊天中的快照链接，可以在插件设置页查看。
 
+## 说明
+本插件依赖于
+
+1. [插件检测更新API](https://github.com/adproqwq/LiteLoaderQQNT-CheckUpdateModule) - 用于插件自更新
+
 ## 安装方法
 1. 下载最新 [发行版](https://github.com/adproqwq/LiteLoaderQQNT-GKDInspectForQQNT/releases) 并解压
 2. 将文件夹移动至 `LiteLoaderQQNT数据目录/plugins/` 下面
