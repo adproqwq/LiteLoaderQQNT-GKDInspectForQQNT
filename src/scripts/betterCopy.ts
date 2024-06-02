@@ -4,11 +4,8 @@ export default `(function() {
   let layuiCss = document.createElement('link');
   layuiCss.rel = 'stylesheet';
   layuiCss.href = 'https://www.layuicdn.com/layui/css/layui.css';
-  let JSON5Script = document.createElement('script');
-  JSON5Script.src = 'https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js';
   document.body.appendChild(layuiScript);
   document.head.appendChild(layuiCss);
-  document.body.appendChild(JSON5Script);
   if(window.localStorage.getItem('categories') === null) window.localStorage.setItem('categories','');
   window.modifyResult = '';
 
@@ -93,12 +90,7 @@ export default `(function() {
             rule.groups[0].rules[0] = {...rulePrekeysObj,...rule.groups[0].rules[0]};
           }
 
-          if(cate == '开屏广告'){
-            delete rule.groups[0].rules[0].activityIds;
-            rule.groups[0].matchTime = 10000;
-            rule.groups[0].resetMatch = 'app';
-            rule.groups[0].actionMaximum = 1;
-          }
+          if(cate == '开屏广告') delete rule.groups[0].rules[0].activityIds;
 
           if(ruleName != '' && cate != '') rule.groups[0].name = cate + '-' + ruleName;
           else if(ruleName != '' && cate == '') rule.groups[0].name = ruleName;
@@ -115,14 +107,16 @@ export default `(function() {
           window.dispatchEvent(modifyEnd);
         };
 
-        document.getElementsByName('saveSettings')[0].onclick = ()=>{
+        document.getElementsByName('saveSettings')[0].onclick = () => {
           let categories = document.getElementsByName('categories')[0].value;
           window.localStorage.setItem('categories',categories);
-          layer.msg('保存成功',{icon: 6});
-          categories();
+          layer.msg('保存成功，重新打开本窗口生效',{icon: 6});
         };
 
-        categories();
+        let categories = window.localStorage.getItem('categories');
+        if(categories && categories != '') document.getElementsByName('categories')[0].innerText = JSON5.stringify(JSON5.parse(categories));
+
+        geneCategories();
       },
       content: \`
         <div class="layui-tab layui-tab-brief" lay-filter="tab-filter">
@@ -142,6 +136,11 @@ export default `(function() {
                 </div>
                 <div id="categories" class="layui-form-item">
                   <label class="layui-form-label">选择分类：</label>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">插入限制字段：</label>
+                  <input type="radio" name="limit" value="yes" title="是" lay-filter="limit-filter">
+                  <input type="radio" name="limit" value="no" title="否" lay-filter="limit-filter" checked>
                 </div>
                 <div class="layui-form-item">
                   <label class="layui-form-label">修改key为：</label>
@@ -223,6 +222,22 @@ export default `(function() {
       let elem = data.elem;
       cate = elem.value;
     });
+    form.on('radio(limit-filter)', (data)=>{
+      let elem = data.elem;
+      let isInsert = elem.value;
+      if(isInsert == 'yes'){
+        if(mode != '3'){
+          rule.groups[0].matchTime = 10000;
+          rule.groups[0].resetMatch = 'app';
+          rule.groups[0].actionMaximum = 1;
+        }
+        else{
+          rule.groups[0].rules[0].matchTime = 10000;
+          rule.groups[0].rules[0].resetMatch = 'app';
+          rule.groups[0].rules[0].actionMaximum = 1;
+        }
+      }
+    });
     form.on('input-affix(ok)', function(data){
       let elem = data.elem;
       let value = elem.value;
@@ -249,10 +264,10 @@ export default `(function() {
     else if(mode == '3') return JSON5.stringify(rule.groups[0].rules[0],null,2);
   }
 
-  function categories(){
+  function geneCategories(){
     let categories = window.localStorage.getItem('categories');
     let CateChoo = document.getElementById('categories');
-    if(categories != ''){
+    if(categories && categories != ''){
       categories = JSON5.parse(categories);
       categories.forEach((b)=>{
         let TInput = document.createElement('input');
